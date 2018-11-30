@@ -1,16 +1,13 @@
 const {MongoClient,ObjectID} = require('mongodb');
 
-MongoClient.connect('mongodb://localhost:27017/TodoApp',{ useNewUrlParser: true },(err,client)=>{
+MongoClient.connect("mongodb://localhost:27017/TodoApp",{useNewUrlParser:true},(err,client)=>{
+
 	if(err){
-		return console.log('Connection Fail');
+		console.log('error',err);
+		return false
 	}
-	
-	console.log('Connection successfull with Mongodatabase');
 	var db = client.db('TodoApp');
-    db.collection('Todos').find().count().then((docs)=>{
-        console.log('total recordes',docs);
-    },(err)=>{
-        console.log('unable to fetch record',JSON.stringify(err));
-    })
-	client.close();
+	db.collection('Todos').find({_id:new ObjectID("5be43108dc68665265b51d7b")}).toArray().then((docs,err)=>{
+		console.log('fetching data',docs);
+	})
 })
