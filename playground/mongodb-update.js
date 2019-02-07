@@ -13,7 +13,7 @@ MongoClient.connect("mongodb://localhost:27017/TodoApp",{useNewUrlParser:true},(
             $set:{name:'jane'},
             $inc:{age:26}
         },
-        {returnOrignal:false}
+        {returnOriginal:false}
     ).then((result)=>{
         console.log(result);
     })
